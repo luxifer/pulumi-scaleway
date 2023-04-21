@@ -13,12 +13,12 @@ RUN apt-get update && \
 # Install bridged provider prerequisites
 # See README.md
 
-# Install go 
+# Install go
 ARG GO_VERSION=1.18.3
 RUN rm -rf /usr/local/go && \
     wget -O ${GO_VERSION}.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf ${GO_VERSION}.tar.gz && \
-    rm ${GO_VERSION}.tar.gz 
+    rm ${GO_VERSION}.tar.gz
 
 ENV GOPATH=/root/go
 ENV PATH=$PATH:/usr/local/go/bin
@@ -52,11 +52,6 @@ RUN npm install --global yarn
 # Install python and related items
 RUN apt-get install -y python3 && \
     apt-get install -y python3-setuptools
-
-# Install .NET
-RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    rm packages-microsoft-prod.deb
 
 RUN apt-get update && \
     apt-get install -y apt-transport-https && \
